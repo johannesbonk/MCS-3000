@@ -23,12 +23,12 @@ architecture behavior of intel_3216 is
 
   begin
 
-  g_FIRST_STAGE_SIGNALS: for i in 0 to g_BUFFER_IO_WIDTH - 1 generate
+  g_FIRST_STAGE_SIGNALS: for i in DB3_DB0'range generate
    w_io(i) <= DB3_DB0(i) when (((not DCE) and (not CS)) = '0') else DI3_DI0(i);
    DB3_DB0(i) <= w_io(i);
   end generate g_FIRST_STAGE_SIGNALS;
 
-  g_SECOND_STAGE_SIGNALS: for i in 0 to g_BUFFER_IO_WIDTH - 1 generate
+  g_SECOND_STAGE_SIGNALS: for i in DO3_DO0'range generate
     DO3_DO0(i) <= 'Z' when ((DCE and (not CS)) = '0') else w_io(i);
   end generate g_SECOND_STAGE_SIGNALS;
 
