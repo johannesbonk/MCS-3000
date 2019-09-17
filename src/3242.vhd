@@ -46,7 +46,7 @@ architecture behavior of intel_3242 is
     end if;
   end process;
 
-  ZERO_DETECT_INV <= not and_reduce(w_counter_out);
+  ZERO_DETECT_INV <= not and_reduce(w_counter_out(g_COUNTER_WIDTH - 2 downto 0));
 
   g_GENERATE_OUTPUT: for i in O6_O0'range generate
     O6_O0(i) <=  not(
